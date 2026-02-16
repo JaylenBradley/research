@@ -34,7 +34,6 @@ def check_ffmpeg_installed():
             capture_output=True,
             text=True,
             check=True,
-            timeout=300
         )
         print(f"✓ FFmpeg found: {result.stdout.split()[2]}")
         return True
@@ -103,12 +102,13 @@ def extract_frames(video_path, output_dir):
     ]
 
     try:
-        print(f"  Running: ffmpeg -i {video_path.name} {output_pattern}")
+        print(f"Running: ffmpeg -i {video_path.name} {output_pattern}")
         result = subprocess.run(
             cmd,
             capture_output=True,
             text=True,
-            check=True
+            check=True,
+            timeout = 300
         )
 
         # Count extracted frames
